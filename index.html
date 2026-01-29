@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Brain DT - Sistema de Gerenciamento de Operações em Day Trade">
+    <meta name="theme-color" content="#0F172A">
+    
+    <title>Brain DT - Dashboard de Day Trade</title>
+    
+    <!-- CSS IMPORTS -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/themes.css">
+    <link rel="stylesheet" href="./assets/css/components.css">
+    <link rel="stylesheet" href="./assets/css/animations.css">
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+    <link rel="stylesheet" href="./assets/css/utilities.css">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- NAVBAR -->
+        <nav class="navbar d-flex justify-between items-center">
+            <div class="navbar-brand d-flex items-center gap-3">
+                <h1 class="logo text-primary font-bold">Brain DT</h1>
+            </div>
+            <div class="navbar-menu d-flex gap-4 items-center">
+                <button class="btn btn-secondary">Dashboard</button>
+                <button class="btn btn-secondary">Diário</button>
+                <button class="btn btn-secondary">Simuladores</button>
+                <button class="btn btn-primary">Sair</button>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content d-flex gap-6">
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <div class="sidebar-menu">
+                    <ul>
+                        <li><a href="#" class="menu-item active">Dashboard</a></li>
+                        <li><a href="#" class="menu-item">Diário de Trade</a></li>
+                        <li><a href="#" class="menu-item">Simuladores</a></li>
+                        <li><a href="#" class="menu-item">Análise</a></li>
+                        <li><a href="#" class="menu-item">Configurações</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- PAGE CONTENT -->
+            <section class="page-content flex-1">
+                <div class="container">
+                    <!-- WELCOME SECTION -->
+                    <div class="section-welcome mb-6">
+                        <h2 class="text-primary font-bold mb-3">Bem-vindo ao Brain DT</h2>
+                        <p class="text-secondary">Plataforma de gerenciamento completo de operações em Day Trade com dashboard de risco, diário de operações e simuladores.</p>
+                    </div>
+
+                    <!-- STATS GRID -->
+                    <div class="grid grid-cols-4 gap-4 mb-6">
+                        <!-- STAT CARD: Lucro -->
+                        <div class="stat-card card bg-secondary rounded-lg p-4 animate-fadeInUp">
+                            <div class="stat-label text-secondary text-sm font-semibold">Lucro Acumulado</div>
+                            <div class="stat-value text-success font-bold text-2xl mt-2">R$ 2.450,00</div>
+                            <div class="stat-change text-success text-sm mt-1">↑ 12.5% hoje</div>
+                        </div>
+
+                        <!-- STAT CARD: Operações -->
+                        <div class="stat-card card bg-secondary rounded-lg p-4 animate-fadeInUp">
+                            <div class="stat-label text-secondary text-sm font-semibold">Operações Hoje</div>
+                            <div class="stat-value text-primary font-bold text-2xl mt-2">8</div>
+                            <div class="stat-change text-secondary text-sm mt-1">3 ganhadoras</div>
+                        </div>
+
+                        <!-- STAT CARD: Taxa de Acerto -->
+                        <div class="stat-card card bg-secondary rounded-lg p-4 animate-fadeInUp">
+                            <div class="stat-label text-secondary text-sm font-semibold">Taxa de Acerto</div>
+                            <div class="stat-value text-warning font-bold text-2xl mt-2">62.5%</div>
+                            <div class="stat-change text-secondary text-sm mt-1">Meta: 65%</div>
+                        </div>
+
+                        <!-- STAT CARD: Risco -->
+                        <div class="stat-card card bg-secondary rounded-lg p-4 animate-fadeInUp">
+                            <div class="stat-label text-secondary text-sm font-semibold">Risco Hoje</div>
+                            <div class="stat-value text-danger font-bold text-2xl mt-2">R$ 500,00</div>
+                            <div class="stat-change text-secondary text-sm mt-1">Limite: R$ 1.000</div>
+                        </div>
+                    </div>
+
+                    <!-- INFO MESSAGE -->
+                    <div class="info-box bg-secondary rounded-lg p-6 border-left border-primary mb-6">
+                        <h3 class="text-primary font-semibold mb-2">ℹ️ Informação</h3>
+                        <p class="text-secondary">Esta é uma versão inicial do Brain DT. Em breve você terá acesso a todos os módulos incluindo: Dashboard de Risco em tempo real, Diário de Trade estruturado, Simuladores de resultados para diversos ativos, Gerenciamento de Risco configurável e Sistema de Autenticação por usuário.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT IMPORTS -->
+    <script src="./assets/js/auth.js" defer></script>
+    <script src="./assets/js/app.js" defer></script>
+</body>
+</html>
