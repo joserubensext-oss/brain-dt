@@ -1,0 +1,152 @@
+/* ====================================
+   THEMES - Color Palettes & Variables
+   ==================================== */
+
+/* LIGHT THEME */
+:root[data-theme="light"] {
+  /* Primary Colors */
+  --color-primary: #00D9FF;
+  --color-primary-dark: #00B8CC;
+  --color-primary-light: #33E6FF;
+  
+  /* Backgrounds */
+  --color-bg-primary: #F5F7FA;
+  --color-bg-secondary: #FFFFFF;
+  --color-bg-tertiary: #E8EBF0;
+  
+  /* Text Colors */
+  --color-text-primary: #1A1F36;
+  --color-text-secondary: #6B7280;
+  --color-text-tertiary: #9CA3AF;
+  
+  /* Trading Colors */
+  --color-profit: #00C853;
+  --color-loss: #FF5252;
+  --color-neutral: #FFC107;
+  --color-breakeven: #9C27B0;
+  
+  /* UI Elements */
+  --color-border: #E5E7EB;
+  --color-border-light: #F3F4F6;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --color-shadow-sm: rgba(0, 0, 0, 0.05);
+  --color-shadow-lg: rgba(0, 0, 0, 0.15);
+}
+
+/* DARK THEME (Default for Dashboard) */
+:root,
+:root[data-theme="dark"] {
+  /* Primary Colors */
+  --color-primary: #00D9FF;
+  --color-primary-dark: #0099CC;
+  --color-primary-light: #66E6FF;
+  
+  /* Backgrounds */
+  --color-bg-primary: #0F172A;
+  --color-bg-secondary: #1E293B;
+  --color-bg-tertiary: #334155;
+  --color-bg-glass: rgba(30, 41, 59, 0.8);
+  --color-bg-glass-light: rgba(51, 65, 85, 0.6);
+  
+  /* Text Colors */
+  --color-text-primary: #F1F5F9;
+  --color-text-secondary: #CBD5E1;
+  --color-text-tertiary: #94A3B8;
+  
+  /* Trading Colors */
+  --color-profit: #10B981;
+  --color-profit-light: #34D399;
+  --color-profit-dark: #059669;
+  
+  --color-loss: #EF4444;
+  --color-loss-light: #F87171;
+  --color-loss-dark: #DC2626;
+  
+  --color-neutral: #F59E0B;
+  --color-neutral-light: #FBBF24;
+  
+  --color-breakeven: #A78BFA;
+  --color-breakeven-light: #C4B5FD;
+  
+  /* UI Elements */
+  --color-border: #334155;
+  --color-border-light: #475569;
+  --color-border-bright: #64748B;
+  
+  /* Shadow with glassmorphism */
+  --color-shadow: rgba(0, 0, 0, 0.3);
+  --color-shadow-sm: rgba(0, 0, 0, 0.2);
+  --color-shadow-lg: rgba(0, 0, 0, 0.4);
+  --color-shadow-inner: rgba(255, 255, 255, 0.05);
+  
+  /* Glassmorphism Backdrop */
+  --backdrop-blur: blur(10px);
+  --backdrop-brightness: brightness(1.1);
+}
+
+/* HIGH CONTRAST THEME */
+:root[data-theme="high-contrast"] {
+  /* Primary Colors */
+  --color-primary: #00FFFF;
+  --color-primary-dark: #00CCCC;
+  --color-primary-light: #33FFFF;
+  
+  /* Backgrounds */
+  --color-bg-primary: #000000;
+  --color-bg-secondary: #1A1A1A;
+  --color-bg-tertiary: #2D2D2D;
+  --color-bg-glass: rgba(26, 26, 26, 0.9);
+  --color-bg-glass-light: rgba(45, 45, 45, 0.7);
+  
+  /* Text Colors */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #E0E0E0;
+  --color-text-tertiary: #B0B0B0;
+  
+  /* Trading Colors */
+  --color-profit: #00FF00;
+  --color-profit-light: #33FF33;
+  --color-profit-dark: #00CC00;
+  
+  --color-loss: #FF0000;
+  --color-loss-light: #FF3333;
+  --color-loss-dark: #CC0000;
+  
+  --color-neutral: #FFFF00;
+  --color-neutral-light: #FFFF66;
+  
+  --color-breakeven: #FF00FF;
+  --color-breakeven-light: #FF66FF;
+  
+  /* UI Elements */
+  --color-border: #FFFFFF;
+  --color-border-light: #E0E0E0;
+  --color-border-bright: #CCCCCC;
+  
+  /* Shadow */
+  --color-shadow: rgba(0, 0, 0, 0.5);
+  --color-shadow-sm: rgba(0, 0, 0, 0.3);
+  --color-shadow-lg: rgba(0, 0, 0, 0.6);
+  --color-shadow-inner: rgba(255, 255, 255, 0.1);
+  
+  /* Glassmorphism Backdrop */
+  --backdrop-blur: blur(12px);
+  --backdrop-brightness: brightness(1.2);
+}
+
+/* THEME APPLICATION */
+html,
+body {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+/* Default Apply Dark Theme if no theme specified */
+html:not([data-theme]) {
+  --color-primary: #00D9FF;
+  --color-bg-primary: #0F172A;
+  --color-bg-secondary: #1E293B;
+  --color-text-primary: #F1F5F9;
+  --color-profit: #10B981;
+  --color-loss: #EF4444;
+}
