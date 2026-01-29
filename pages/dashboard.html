@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Risco - Brain DT</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/themes.css">
+    <link rel="stylesheet" href="../assets/css/components.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <link rel="stylesheet" href="../assets/css/utilities.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- NAVBAR -->
+        <nav class="navbar d-flex justify-between items-center">
+            <div class="navbar-brand d-flex items-center gap-3">
+                <h1 class="logo text-primary font-bold">Brain DT</h1>
+                <span class="text-secondary text-sm">Dashboard de Risco</span>
+            </div>
+            <div class="navbar-menu d-flex gap-4 items-center">
+                <a href="../index.html" class="menu-link text-secondary">Home</a>
+                <a href="trades.html" class="menu-link text-secondary">Diário</a>
+                <a href="simulators.html" class="menu-link text-secondary">Simuladores</a>
+                <button class="btn btn-primary btn-sm" onclick="Auth.logout(); window.location.href='../index.html'">Sair</button>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content d-flex gap-6">
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <div class="sidebar-menu">
+                    <h3 class="text-secondary text-sm font-semibold mb-4">NAVEGAÇÃO</h3>
+                    <ul>
+                        <li><a href="dashboard.html" class="menu-item active text-primary">📊 Dashboard</a></li>
+                        <li><a href="trades.html" class="menu-item text-secondary">📝 Diário de Trade</a></li>
+                        <li><a href="simulators.html" class="menu-item text-secondary">🎯 Simuladores</a></li>
+                        <li><a href="#" class="menu-item text-secondary">⚙️ Configurações</a></li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- PAGE CONTENT -->
+            <section class="page-content flex-1">
+                <div class="container">
+                    <!-- HEADER -->
+                    <div class="section-header mb-6">
+                        <h2 class="text-primary font-bold mb-2">Dashboard de Risco</h2>
+                        <p class="text-secondary">Monitoramento em tempo real do status operacional, metas, perdas e limites</p>
+                    </div>
+
+                    <!-- TOP METRICS -->
+                    <div class="grid grid-cols-4 gap-4 mb-6">
+                        <!-- LUCRO/PERDA -->
+                        <div class="stat-card card bg-secondary rounded-lg p-4 animate-fadeInUp border-left" style="border-left: 3px solid var(--color-primary)">
+                            <div class="stat-label text-secondary text-sm font-semibold">Resultado do Dia</div>
+                            <div class="stat-value text-primary font-bold text-3xl mt-2" id="dailyProfit">R$ 0,00</div>
+                            <div class="stat-change text-secondary text-sm mt-1"><span id="profitPercent">0%</span> da meta</div>
+                        </div>
+
+                        <!-- RISCO UTILIZADO -->
+                        <div class="stat-card card bg-secondary rounded-lg p-4 animate-fadeInUp border-left" style="border-left: 3px solid var(--color-danger)">
+                            <div class="stat-label text-secondary text-sm font-semibold">Risco Utilizado</div>
+                            <div class="stat-value text-danger font-bold text-3xl mt-2" id="riskUsed">R$ 0,00</div>
+                            <div class="stat-change text-secondary text-sm mt-1"><span id="riskPercent">0%</span> do limite</div>
+                        </div>
+
+                        <!-- TAXA DE ACERTO -->
+                        <div class="stat-card card bg-secondary rounded-lg p-4 animate-fadeInUp border-left" style="border-left: 3px solid var(--color-warning)">
+                            <div class="stat-label text-secondary text-sm font-semibold">Taxa de Acerto</div>
+                            <div class="stat-value text-warning font-bold text-3xl mt-2" id="winRate">0%</div>
+                            <div class="stat-change text-secondary text-sm mt-1"><span id="trades">0</span> operações</div>
+                        </div>
+
+                        <!-- LIMITE RESTANTE -->
+                        <div class="stat-card card bg-secondary rounded-lg p-4 animate-fadeInUp border-left" style="border-left: 3px solid var(--color-success)">
+                            <div class="stat-label text-secondary text-sm font-semibold">Limite Disponível</div>
+                            <div class="stat-value text-success font-bold text-3xl mt-2" id="remainingLimit">R$ 1.000,00</div>
+                            <div class="stat-change text-secondary text-sm mt-1">Limite diário</div>
+                        </div>
+                    </div>
+
+                    <!-- CHARTS ROW -->
+                    <div class="grid grid-cols-2 gap-6 mb-6">
+                        <!-- PROFIT/LOSS CHART -->
+                        <div class="card bg-secondary rounded-lg p-6">
+                            <h3 class="text-primary font-semibold mb-4">Resultado das Operações</h3>
+                            <canvas id="profitLossChart" style="max-height: 300px;"></canvas>
+                        </div>
+
+                        <!-- RISK GAUGE -->
+                        <div class="card bg-secondary rounded-lg p-6">
+                            <h3 class="text-primary font-semibold mb-4">Status de Risco</h3>
+                            <canvas id="riskGaugeChart" style="max-height: 300px;"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- RECENT TRADES -->
+                    <div class="card bg-secondary rounded-lg p-6">
+                        <h3 class="text-primary font-semibold mb-4">Operações Recentes</h3>
+                        <div class="trades-list">
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="border-bottom: 1px solid var(--color-border);">
+                                        <th class="text-left p-2 text-secondary text-sm font-semibold">Horário</th>
+                                        <th class="text-left p-2 text-secondary text-sm font-semibold">Ativo</th>
+                                        <th class="text-left p-2 text-secondary text-sm font-semibold">Tipo</th>
+                                        <th class="text-right p-2 text-secondary text-sm font-semibold">Risco</th>
+                                        <th class="text-right p-2 text-secondary text-sm font-semibold">Resultado</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tradesTableBody">
+                                    <tr>
+                                        <td colspan="5" class="text-center p-4 text-secondary text-sm">Nenhuma operação registrada hoje</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/app.js"></script>
+    <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>
